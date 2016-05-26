@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Docker使用笔记 | 小灰狼笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近尝试了一下特别火的技术：Docker，在此记录一下。按照我的使用思路，需要一个隔离的运行web服务的环境。
+安装我使用的是ubuntu，apt-get安装并不成功，也懒得处理报出的错误，使用的是另一种安装方式：
+1curl -sSL https://get.docker.com/ubuntu/ | sh
+启动我使用的是阿里云主机，阿里云默认不能启动Docker，需要执行下面的命令：
+1rout">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker使用笔记">
+<meta property="og:url" content="http://bloodwolf.github.io/2015/10/10/Docker使用笔记/index.html">
+<meta property="og:site_name" content="小灰狼笔记">
+<meta property="og:description" content="最近尝试了一下特别火的技术：Docker，在此记录一下。按照我的使用思路，需要一个隔离的运行web服务的环境。
+安装我使用的是ubuntu，apt-get安装并不成功，也懒得处理报出的错误，使用的是另一种安装方式：
+1curl -sSL https://get.docker.com/ubuntu/ | sh
+启动我使用的是阿里云主机，阿里云默认不能启动Docker，需要执行下面的命令：
+1rout">
+<meta property="og:updated_time" content="2016-05-26T09:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker使用笔记">
+<meta name="twitter:description" content="最近尝试了一下特别火的技术：Docker，在此记录一下。按照我的使用思路，需要一个隔离的运行web服务的环境。
+安装我使用的是ubuntu，apt-get安装并不成功，也懒得处理报出的错误，使用的是另一种安装方式：
+1curl -sSL https://get.docker.com/ubuntu/ | sh
+启动我使用的是阿里云主机，阿里云默认不能启动Docker，需要执行下面的命令：
+1rout">
+  
+    <link rel="alternate" href="/atom.xml" title="小灰狼笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小灰狼笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bloodwolf.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Docker使用笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/10/Docker使用笔记/" class="article-date">
+  <time datetime="2015-10-10T12:17:44.000Z" itemprop="datePublished">2015-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker使用笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近尝试了一下特别火的技术：Docker，在此记录一下。按照我的使用思路，需要一个隔离的运行web服务的环境。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>我使用的是ubuntu，apt-get安装并不成功，也懒得处理报出的错误，使用的是另一种安装方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-s</span>SL https://get.docker.com/ubuntu/ | sh</span><br></pre></td></tr></table></figure>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>我使用的是阿里云主机，阿里云默认不能启动Docker，需要执行下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route del -net 172.16.0.0 netmask 255.240.0.0</span><br></pre></td></tr></table></figure>
+<p>使用docker（也就是网上大部分文章介绍的docker pull）之前需要启动docker：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker daemon</span><br></pre></td></tr></table></figure>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>先了解两个概念：image和container。做个简单的类比，image就是class，container就是object，我们以image为模板，创建container，实际运行的是container。</p>
+<p>网上有许多制作好的image，我们先获取一个ubuntu的image：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
+<p>然后启动一个container：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="_">-d</span> ubuntu</span><br></pre></td></tr></table></figure>
+<p>参数-d表示daemon运行，此时可以简单的认为有一个ubuntu系统在运行了,执行下面的命令可以列出正在运行的container：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="_">-a</span></span><br></pre></td></tr></table></figure>
+<p>那么怎么进入这个container，搭建web环境呢？进入container的命令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -ti [CONTAINER ID] /bin/bash</span><br></pre></td></tr></table></figure>
+<p>可以看到这是一个干净的『ubuntu系统』，就当作普通的系统安装环境就可以了，完成后使用exit退出。</p>
+<p>使用下列命令可以挂载主机的文件系统到container，以及映射主机的网络端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="_">-d</span> -v /mnt/www:/mnt/www:ro -p 9999:8888 ubuntu</span><br></pre></td></tr></table></figure>
+<p>-v /mnt/www:/mnt/www:ro表示挂载主机的/mnt/www目录到container的/mnt/www目录，ro表示只读。-p 9999:8888表示把主机的9999端口映射到container的8888端口。</p>
+<p>（未完待续）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bloodwolf.github.io/2015/10/10/Docker使用笔记/" data-id="cioo2k07z0000k7fycx1xklb6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/16/也谈谈炉石传说战歌指挥官的修改/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          也谈谈炉石传说战歌指挥官的修改
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/23/五线谱调号的简易识别方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">五线谱调号的简易识别方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/16/也谈谈炉石传说战歌指挥官的修改/">也谈谈炉石传说战歌指挥官的修改</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/10/Docker使用笔记/">Docker使用笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/23/五线谱调号的简易识别方法/">五线谱调号的简易识别方法</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/11/谈谈技术的重要性/">谈谈技术的重要性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 bloodwolf<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
